@@ -1,0 +1,104 @@
+# Copyright 2015 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+source_set("tonic") {
+  sources = [
+    "dart_api_scope.h",
+    "dart_builtin.cc",
+    "dart_builtin.h",
+    "dart_class_library.cc",
+    "dart_class_library.h",
+    "dart_class_provider.cc",
+    "dart_class_provider.h",
+    "dart_converter.cc",
+    "dart_converter.h",
+    "dart_debugger.cc",
+    "dart_debugger.h",
+    "dart_dependency_catcher.cc",
+    "dart_dependency_catcher.h",
+    "dart_error.cc",
+    "dart_error.h",
+    "dart_exception_factory.cc",
+    "dart_exception_factory.h",
+    "dart_invoke.cc",
+    "dart_invoke.h",
+    "dart_isolate_scope.cc",
+    "dart_isolate_scope.h",
+    "dart_library_loader.cc",
+    "dart_library_loader.h",
+    "dart_library_provider.cc",
+    "dart_library_provider.h",
+    "dart_library_provider_files.cc",
+    "dart_library_provider_files.h",
+    "dart_library_provider_network.cc",
+    "dart_library_provider_network.h",
+    "dart_message_handler.cc",
+    "dart_message_handler.h",
+    "dart_persistent_value.cc",
+    "dart_persistent_value.h",
+    "dart_script_loader_sync.cc",
+    "dart_script_loader_sync.h",
+    "dart_snapshot_loader.cc",
+    "dart_snapshot_loader.h",
+    "dart_state.cc",
+    "dart_state.h",
+    "dart_timer_heap.cc",
+    "dart_timer_heap.h",
+    "dart_vm.cc",
+    "dart_vm.h",
+    "dart_wrappable.cc",
+    "dart_wrappable.h",
+    "dart_wrapper_info.h",
+    "float32_list.cc",
+    "float32_list.h",
+    "mojo_converter.h",
+  ]
+
+  deps = [
+    "//base",
+    "//build/config/sanitizers:deps",
+    "//mojo/data_pipe_utils",
+    "//mojo/message_pump",
+    "//mojo/public/cpp/system",
+    "//mojo/services/network/interfaces",
+    "//url",
+  ]
+
+  public_deps = [
+    "//dart/runtime:libdart",
+    "//dart/runtime/vm:libdart_platform",
+  ]
+
+  public_configs = [ ":tonic_config" ]
+}
+
+config("tonic_config") {
+  include_dirs = [ "//dart/runtime" ]
+}
+
+# TODO(johnmccutchan): Move these sources into sky_engine and remove this.
+source_set("tonic_wtf") {
+  sources = [
+    "dart_converter_wtf.cc",
+    "dart_converter_wtf.h",
+    "dart_string.cc",
+    "dart_string.h",
+    "dart_string_cache.cc",
+    "dart_string_cache.h",
+    "dart_value.cc",
+    "dart_value.h",
+  ]
+
+  deps = [
+    ":tonic",
+    "//base",
+    "//mojo/common",
+    "//mojo/public/cpp/system",
+  ]
+
+  public_deps = [
+    "//dart/runtime:libdart",
+    "//dart/runtime/vm:libdart_platform",
+  ]
+}
