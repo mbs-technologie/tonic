@@ -24,6 +24,7 @@ class DartVM {
     Dart_IsolateInterruptCallback interrupt;
     Dart_IsolateUnhandledExceptionCallback unhandled_exception;
     Dart_IsolateShutdownCallback shutdown;
+    Dart_ThreadExitCallback thread_exit;
     Dart_FileOpenCallback file_open;
     Dart_FileReadCallback file_read;
     Dart_FileWriteCallback file_write;

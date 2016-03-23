@@ -19,6 +19,7 @@ DartVM::Config::Config() {
   interrupt = nullptr;
   unhandled_exception = nullptr;
   shutdown = nullptr;
+  thread_exit = nullptr;
   file_open = nullptr;
   file_read = nullptr;
   file_write = nullptr;
@@ -48,6 +49,7 @@ bool DartVM::Initialize(const Config& config,
                                    config.interrupt,
                                    config.unhandled_exception,
                                    config.shutdown,
+                                   config.thread_exit,
                                    config.file_open,
                                    config.file_read,
                                    config.file_write,
