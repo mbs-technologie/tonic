@@ -81,10 +81,10 @@ void DartLibraryProviderNetwork::GetLibraryAsStream(
 Dart_Handle DartLibraryProviderNetwork::CanonicalizeURL(Dart_Handle library,
                                                         Dart_Handle url) {
   std::string string = StdStringFromDart(url);
-  if (base::StartsWithASCII(string, "dart:", true))
+  if (base::StartsWith(string, "dart:", base::CompareCase::SENSITIVE))
     return url;
   // TODO(abarth): The package root should be configurable.
-  if (base::StartsWithASCII(string, "package:", true))
+  if (base::StartsWith(string, "package:", base::CompareCase::SENSITIVE))
     base::ReplaceFirstSubstringAfterOffset(&string, 0, "package:",
                                            "/packages/");
   GURL library_url(StdStringFromDart(Dart_LibraryUrl(library)));
